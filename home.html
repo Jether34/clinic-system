@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prefix of Discipline Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #2e7d32;
+      --light-gray: #f4f6f8;
+      --dark-gray: #333;
+      --white: #fff;
+      --accent: #1abc9c;
+      --night-bg: #1e1e1e;
+      --night-text: #f0f0f0;
+      --night-card: #2c2c2c;
+      --night-border: #555;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url("pnslogo.jpg") no-repeat center center fixed;
+      background-size: 600px 550px;
+      color: var(--dark-gray);
+      position: relative;
+      transition: background-color 0.1s ease, color 0.3s ease;
+    }
+
+    body.night {
+      background-color: var(--night-bg);
+      color: var(--night-text);
+      background-blend-mode: multiply;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(255, 255, 255, 0.65);
+      z-index: -1;
+    }
+
+    body.night::before {
+      background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--primary-green);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--white);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      max-height: 50px;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    nav a.active {
+      color: var(--accent);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon:hover {
+      transform: scale(1.2);
+      color: var(--accent);
+    }
+
+    .container {
+      display: none;
+      padding: 2rem;
+      min-height: 80vh;
+      animation: fadeIn 0.4s ease-in-out;
+      transition: opacity 0.4s ease;
+    }
+
+    .container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* New School Board Structure Styles */
+    .title {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #2c3e50;
+      border-bottom: 3px solid #4a90e2;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .level {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .person {
+      background: #ffffff;
+      border: 2px solid #4a90e2;
+      border-radius: 12px;
+      padding: 20px;
+      width: 240px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    body.night .person {
+      background: var(--night-card);
+      color: var(--night-text);
+      border-color: var(--night-border);
+    }
+
+    .person:hover {
+      transform: translateY(-5px);
+    }
+
+    .person::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 4px;
+      background: #4a90e2;
+      border-radius: 2px;
+    }
+
+    .person h3 {
+      margin: 10px 0 5px;
+      font-size: 1.1em;
+      color: #2c3e50;
+    }
+
+    body.night .person h3 {
+      color: var(--night-text);
+    }
+
+    .person p {
+      margin: 0;
+      font-weight: 500;
+      color: #4a90e2;
+      font-size: 0.95em;
+    }
+
+    .person .role {
+      font-size: 0.85em;
+      color: #7f8c8d;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .level {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .person {
+        width: 90%;
+      }
+    }
+
+    .accomplishments {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .accomplishments img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .accomplishments ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .info-box {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    body.night .info-box {
+      background-color: rgba(44, 44, 44, 0.95);
+      color: var(--night-text);
+    }
+
+    .login-box {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    body.night .login-box {
+      background-color: var(--night-card);
+      color: var(--night-text);
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: var(--primary-green);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: var(--primary-green);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="prefect_of_discipline-removebg-preview.PNG" alt="School Logo" class="header-logo">
+      <h1>Palawan National School Prefect of Discipline Portal</h1>
+    </div>
+    <nav>
+      <a class="nav-link active" data-target="home">Home</a>
+      <a class="nav-link" data-target="about">About Us</a>
+      <a class="nav-link" data-target="services">Services</a>
+      <a class="nav-link" data-target="contact">Contact Us</a>
+      <a class="nav-link" id="loginToggle">Login</a>
+      <span class="toggle-icon" id="nightToggle">🌙</span>
+    </nav>
+  </header>
+
+  <div id="home" class="container active">
+    <h2>Organizational Chart</h2>
+
+    <div class="org-chart">
+      <div class="title">SCHOOL BOARD STRUCTURE</div>
+
+      <div class="level">
+        <div class="person">
+          <h3>Isaac Newton</h3>
+          <p>CEO & President</p>
+          <div class="role">School Director</div>
+        </div>
+      </div>
+
+      <div class="level">
+        <div class="person"><h3>Marie Curie</h3><p>Chief Human Resource Officer</p><div class="role">HR & Staff Management</div></div>
+        <div class="person"><h3>Thomas Edison</h3><p>Chief Financial Officer</p><div class="role">Budget & Finance</div></div>
+        <div class="person"><h3>Ada Lovelace</h3><p>Chief Commercial Officer</p><div class="role">Operations & Planning</div></div>
+        <div class="person"><h3>Blaise Pascal</h3><p>Chief Technology Officer</p><div class="role">ICT & Innovation</div></div>
+        <div class="person"><h3>Lise Meitner</h3><p>Chief Marketing Officer</p><div class="role">Outreach & Promotion</div></div>
+      </div>
+
+      <div class="level">
+        <div class="person"><h3>Rosalind Franklin</h3><p>SVP Human Resources</p><div class="role">Staff Development</div></div>
+        <div class="person"><h3>Alan Turing</h3><p>SVP Training</p><div class="role">Teacher Training</div></div>
+        <div class="person"><h3>Nikola Tesla</h3><p>SVP Finance</p><div class="role">School Budget</div></div>
+        <div class="person"><h3>Katherine Johnson</h3><p>SVP Accounting</p><div class="role">Payroll & Records</div></div>
+        <div class="person"><h3>Grace Hopper</h3><p>SVP Cargo</p><div class="role">Logistics & Supplies</div></div>
+        <div class="person"><h3>Carl Sagan</h3><p>SVP Marketing and Sales</p><div class="role">School Branding</div></div>
+      </div>
+    </div>
+
+    <div class="accomplishments">
+      <h2>Accomplishments</h2>
+      <div class="info-box">
+        <ul>
+          <li>Implemented digital incident reporting system</li>
+          <li>Reduced processing time by 40%</li>
+          <li>Trained 100+ staff on system usage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="container">
+    <h2>About Us</h2>
+    <div class="info-box">
+      <p>The Prefix of Discipline is a student-led initiative focused on improving discipline tracking and reporting through technology. Our system ensures transparency, accountability, and efficiency in handling school incidents.</p>
+    </div>
+  </div>
+
+  <div id="services" class="container">
+    <h2>Services</h2>
+    <div class="info-box">
+      <ul>
+        <li>Student Logbook</li>
+        <li>Visitor Logbook</li>
+        <li>Admin Dashboard</li>
+        <li>Incident Reporting</li>
+        <li>Records Management</li>
+        <li>Accomplishment Tracking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contact" class="container">
+    <h2>Contact Us</h2>
+    <div class="info-box">
+      <ul>
+        <li>Email: discipline.portal@pns.edu.ph</li>
+        <li>Phone: (048) 433-1234</li>
+        <li>Office Hours: Mon–Fri, 8:00 AM – 5:00 PM</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="login" class="container">
+    <h2>Login</h2>
+    <div class="login-box">
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button>Login</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Palawan National School – Prefect of Discipline Portal. All rights reserved.
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const containers = document.querySelectorAll('.container');
+    const nightToggle = document.getElementById('nightToggle');
+    const loginToggle = document.getElementById('loginToggle');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const targetId = link.getAttribute('data-target');
+        if (targetId) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          containers.forEach(c => {
+            c.classList.remove('active');
+            if (c.id === targetId) c.classList.add('active');
+          });
+        }
+      });
+    });
+
+    loginToggle.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      loginToggle.classList.add('active');
+      containers.forEach(c => c.classList.remove('active'));
+      document.getElementById('login').classList.add('active');
+    });
+
+    nightToggle.addEventListener('click', () => {
+      document.body.classList.toggle('night');
+      nightToggle.textContent = document.body.classList.contains('night') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>

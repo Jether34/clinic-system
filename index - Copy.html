@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palawan National School Prefix of Discipline Official Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #388e3c;
+      --yellow: #fbc02d;
+      --white: #ffffff;
+      --black: #1a1a1a;
+      --bg: #f4f6f8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      overscroll-behavior-x: none;
+      touch-action: pan-y;
+    }
+
+    header {
+      background-color: var(--green);
+      color: var(--white);
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      padding: 60px 30px;
+      animation: fadeIn 0.8s ease;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 60px 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounceIn 0.6s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(60, 200, 60, 0.3);
+    }
+
+    .box h2 {
+      color: var(--green);
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .box p {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .box button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .box button:hover {
+      background: #ffdd55;
+    }
+
+    footer {
+      background-color: var(--green);
+      color: var(--white);
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 12px;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--yellow);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounceIn {
+      0%   { transform: scale(0.8); opacity: 0; }
+      60%  { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @media screen and (max-width: 768px) and (orientation: portrait) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+      }
+
+      .box {
+        padding: 40px 20px;
+      }
+
+      .box h2 {
+        font-size: 20px;
+      }
+
+      .box p {
+        font-size: 14px;
+      }
+
+      .box button {
+        font-size: 15px;
+        padding: 10px 20px;
+      }
+    }
+
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      .container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  Palawan National School Prefix of Discipline Portal
+</header>
+
+<main>
+  <div class="container">
+    <div class="box">
+      <h2>Student Logbook</h2>
+      <p>Records student consultations including grade, section, contact, and cases. Search and print are available in the admin dashboard.</p>
+      <button onclick="location.href='student.php?record_type=student'">Open</button>
+    </div>
+    <div class="box">
+      <h2>Visitor Logbook</h2>
+      <p>Logs visitor entries for those entering the Prefix of Discipline office. Requires purpose and contact number. Searchable and printable from admin dashboard.</p>
+      <button onclick="location.href='visitor.php?record_type=visitor'">Open</button>
+    </div>
+    <div class="box">
+      <h2>Admin Dashboard</h2>
+      <p>Access full monitoring tools, search filters, and printable records for students and visitors. Restricted to authorized personnel only.</p>
+      <button onclick="location.href='admin_login.php'">Open</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © Palawan National School Prefix of Discipline. All rights reserved.
+</footer>
+
+</body>
+</html>
